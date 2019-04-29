@@ -7,6 +7,7 @@
 #include <util/delay.h>
 #include <avr/wdt.h>
 #include <string.h>
+#include <avr/pgmspace.h>
 
 unsigned char flag_nomer_bileta_gotov = 0;
 unsigned char bilet_nomer = 0;
@@ -31,9 +32,9 @@ ISR(INT1_vect) // Кнопка
         }
     }
     if (flag_nomer_bileta_gotov == 1) {
-        if (bilet_nomer == 1) memcpy(b, b1, 21);
-        if (bilet_nomer == 2) memcpy(b, b2, 21);
-        if (bilet_nomer == 3) memcpy(b, b3, 21);
+        if (bilet_nomer == 1) memcpy_P(b, b1, 21);
+        if (bilet_nomer == 2) memcpy_P(b, b2, 21);
+        if (bilet_nomer == 3) memcpy_P(b, b3, 21);
         // 40 таких
         otvet_nomer++;
         otvet(otvet_nomer);
